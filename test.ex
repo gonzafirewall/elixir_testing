@@ -32,7 +32,24 @@ defmodule M do
         #do_recursion()
         #do_enum_stuff()
         #do_list_comprehension()
-        do_exception_handling()
+        #do_exception_handling()
+        do_proc_stuff()
+    end
+
+    def do_proc_stuff do
+        spawn(fn() -> loop(50, 1) end)
+        spawn(fn() -> loop(100, 50) end)
+
+        send(self(), {:french, "Bob"})
+
+        receive do
+            {:french, name} -> IO.puts "Bonjour #{name}"
+            {:german, name} -> IO.puts "Guten tag #{name}"
+            {:english, name} -> IO.puts "Hello #{name}"
+        after
+            500 -> IO.puts "Time up"
+        end
+        
     end
 
     def do_exception_handling do
