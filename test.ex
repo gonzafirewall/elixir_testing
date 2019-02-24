@@ -24,8 +24,59 @@ defmodule M do
         #do_compare()
         #do_conditionals()
         #do_case()
-        do_tuples_stuff()
+        #do_tuples_stuff()
+        do_lists_stuff()
     end
+
+    def do_lists_stuff do
+        list1 = [1,2,3]
+        list2 = [4,5,6]
+        list3 = list1 ++ list2
+        list4 = list3 -- list1
+        IO.puts 6 in list4
+        IO.puts "---------"
+        [head | tail] = list3
+        IO.puts "Head is: #{head}"
+        IO.puts "---------"
+        IO.write "Tail: "
+        IO.inspect tail
+        IO.puts "---------"
+        # print chars
+        IO.inspect [97, 98]
+        # Print as lists
+        IO.inspect [97, 98], charlists: :as_lists
+        IO.puts "---------"
+        Enum.each tail, fn item ->
+            IO.puts item
+        end 
+        IO.puts "---------"
+        words = ["Random", "words", "in a", "list"]
+        Enum.each words, fn word ->
+            IO.puts word
+        end
+        IO.puts "---------"
+        display_list(words)
+        IO.puts "---------"
+
+        IO.puts display_list(List.delete(words, "Random"))
+        IO.puts "---------"
+        IO.puts display_list(List.delete_at(words, 1))
+        IO.puts "---------"
+        IO.puts display_list(List.insert_at(words, 4, "Prueba"))
+        IO.puts "---------"
+        IO.puts List.first(words)
+        IO.puts List.last(words)
+
+        my_stats = [name: "Gonza", age: 31]
+    end
+
+    
+
+    def display_list([word|words]) do
+        IO.puts word
+        display_list(words)
+    end
+    def display_list([]), do: nil
 
     def do_tuples_stuff do
         my_stats = {174, 85, :Gonza}
