@@ -30,7 +30,28 @@ defmodule M do
         #do_pattern_match()
         #do_anon_func
         #do_recursion()
-        do_enum_stuff()
+        #do_enum_stuff()
+        #do_list_comprehension()
+        do_exception_handling()
+    end
+
+    def do_exception_handling do
+        
+        err = try do
+            5 / 0
+        rescue
+            ArithmeticError -> "Can't divide by zero"
+        end
+
+        IO.puts err
+    end
+
+    def do_list_comprehension do
+        dbl_list = for n <- [1,2,3], do: n * 2
+        IO.inspect dbl_list
+
+        even_list = for n <- [1,2,3,4], rem(n, 2) == 0, do: n
+        IO.inspect even_list
     end
 
     def do_enum_stuff do
