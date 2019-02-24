@@ -29,7 +29,25 @@ defmodule M do
         #do_maps_stuff()
         #do_pattern_match()
         #do_anon_func
-        do_recursion()
+        #do_recursion()
+        do_enum_stuff()
+    end
+
+    def do_enum_stuff do
+        display_sep "Even list #{Enum.all?([1,2,3,4], 
+        fn(n) -> rem(n, 2) == 0 end)}"
+        display_sep "Even list #{Enum.any?([1,2,3,4], 
+        fn(n) -> rem(n, 2) == 0 end)}"
+
+        Enum.each([1,2,3], fn(n) -> display_sep(n) end)
+
+        dbl_list = Enum.map([1,2,3,4], fn(n) -> n * 2 end)
+        display_sep(&IO.inspect/1, dbl_list)
+
+        sum_vals = Enum.reduce([4,3,2,1], fn(n, acc) -> n + acc end)
+        display_sep "Sum: #{sum_vals}"
+
+        IO.inspect Enum.uniq([1,2,1]) 
     end
 
     def do_recursion do
