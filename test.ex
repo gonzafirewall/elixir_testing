@@ -22,7 +22,33 @@ defmodule M do
         #do_str_stuff()
         #do_math_stuff()
         #do_compare()
-        do_conditionals()
+        #do_conditionals()
+        #do_case()
+        do_tuples_stuff()
+    end
+
+    def do_tuples_stuff do
+        my_stats = {174, 85, :Gonza}
+        IO.puts "Tuple #{is_tuple(my_stats)}"
+        my_stats2 = Tuple.append(my_stats, 31)
+        IO.puts "Age #{elem(my_stats2, 3)}"
+        IO.puts "Tuple size #{tuple_size(my_stats2)}"
+        my_stats3 = Tuple.delete_at(my_stats2, 0)
+        my_stats4 = Tuple.insert_at(my_stats3, 0, 1988)
+        many_zeroes = Tuple.duplicate(0, 5)
+        {peso, altura, nombre} = {85, 1.73, "Gonza"}
+        IO.puts "peso: #{peso}"
+    end
+
+    def do_case do
+        age = 16
+        case 2 do
+            1 -> IO.puts "Entered one"
+            2 -> IO.puts "Entered two"
+            _ -> IO.puts "Default"
+        end
+
+        IO.puts "Ternary #{if age >= 16, do: "Can vote", else: "Cant Vote"}"
     end
 
     def do_conditionals do
