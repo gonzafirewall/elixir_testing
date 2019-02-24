@@ -25,7 +25,41 @@ defmodule M do
         #do_conditionals()
         #do_case()
         #do_tuples_stuff()
-        do_lists_stuff()
+        #do_lists_stuff()
+        #do_maps_stuff()
+        do_pattern_match()
+    end
+
+    def do_pattern_match do
+        [length, width] = [10, 20]
+        display_sep("Widht is: #{width}")
+        [_, [_, a]] = [10, [20, 30]]
+        display_sep("Get num: #{a}")
+    end
+    def do_maps_stuff do
+        capitals = %{"Alabama" => "Montgomery",
+                     "Alaska" => "Juneau",
+                     "Arizona" => "Phoenix"}
+
+        display_sep("Capital of Alaska: #{capitals["Alaska"]}")
+        capitals2 = %{alabama: "Montgomery",
+                     alaska: "Juneau",
+                     arizona: "Phoenix"}
+
+        display_sep("Capital of Arizona: #{capitals2.arizona}")
+
+        capitals3 = Dict.put_new(capitals, "Arkansas", "Little Rock")
+
+    end
+
+    def display_sep(display_func, text) do
+        display_func.(text)
+        IO.puts "---------"
+    end
+
+    def display_sep(text) do
+        IO.puts text
+        IO.puts "---------"
     end
 
     def do_lists_stuff do
@@ -33,16 +67,14 @@ defmodule M do
         list2 = [4,5,6]
         list3 = list1 ++ list2
         list4 = list3 -- list1
-        IO.puts 6 in list4
-        IO.puts "---------"
+        display_sep 6 in list4
         [head | tail] = list3
-        IO.puts "Head is: #{head}"
-        IO.puts "---------"
+        display_sep "Head is: #{head}"
         IO.write "Tail: "
         IO.inspect tail
         IO.puts "---------"
         # print chars
-        IO.inspect [97, 98]
+        display_sep(&IO.inspect/1,[97, 98])
         # Print as lists
         IO.inspect [97, 98], charlists: :as_lists
         IO.puts "---------"
@@ -70,7 +102,7 @@ defmodule M do
         my_stats = [name: "Gonza", age: 31]
     end
 
-    
+
 
     def display_list([word|words]) do
         IO.puts word
