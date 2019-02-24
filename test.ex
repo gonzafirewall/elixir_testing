@@ -27,7 +27,27 @@ defmodule M do
         #do_tuples_stuff()
         #do_lists_stuff()
         #do_maps_stuff()
-        do_pattern_match()
+        #do_pattern_match()
+        do_anon_func
+    end
+
+    def do_anon_func do
+        get_sum = fn (x, y) -> x + y end
+        display_sep "5 + 5 = #{get_sum.(5,5)}"
+        get_less = &(&1 - &2)
+        display_sep "7 - 5 = #{get_less.(7,6)}"
+        add_sum = fn
+            {x, y} -> display_sep "#{x} + #{y} = #{x + y}"
+            {x, y, z} -> display_sep "#{x} + #{y} + #{z} = #{x + y + z}"
+        end
+        add_sum.({1,2})
+        add_sum.({1,2,3})
+        # default values
+        display_sep "Default value test: #{do_it()}"
+    end
+
+    def do_it(x \\ 1, y \\ 2) do
+        x + y
     end
 
     def do_pattern_match do
