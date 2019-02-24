@@ -28,7 +28,37 @@ defmodule M do
         #do_lists_stuff()
         #do_maps_stuff()
         #do_pattern_match()
-        do_anon_func
+        #do_anon_func
+        do_recursion()
+    end
+
+    def do_recursion do
+        display_sep "Factorial of 4: #{factorial(4)}"
+        display_sep "Sum : #{sum([1,2,3])}"
+
+        loop(5, 1)
+    end
+
+    def loop(0, _), do: nil
+    def loop(max, min) do
+        if max < min do
+            loop(0, min)
+        else
+            IO.puts "Num : #{max}"
+            loop(max - 1, min)
+        end
+    end
+
+    def sum([]), do: 0
+    def sum([h|t]), do: h + sum(t)
+
+    def factorial(num) do
+        if num <= 1 do
+            1
+        else 
+            result = num * factorial(num - 1)
+            result
+        end    
     end
 
     def do_anon_func do
